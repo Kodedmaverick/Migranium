@@ -1,8 +1,10 @@
 import { useParams, Link } from 'react-router-dom';
 import { MODULES_DATA } from '../data/features.js';
+import { useDemo } from '../components/DemoModal.jsx';
 
 export default function Feature() {
   const { slug } = useParams();
+  const openDemo = useDemo();
   const bySlug = {};
   MODULES_DATA.forEach((m, i) => { m._i = i; bySlug[m.slug] = m; });
   const mod = bySlug[slug] || MODULES_DATA[0];
@@ -32,7 +34,7 @@ export default function Feature() {
               <h1 className="hero" style={{ fontSize: 52, lineHeight: 1.05, letterSpacing: '-0.03em', fontWeight: 800, color: '#032F57', margin: '22px 0 0', textWrap: 'balance' }}>{mod.name}</h1>
               <p style={{ fontSize: 18, lineHeight: 1.6, color: '#5A6B7B', margin: '18px 0 0', textWrap: 'pretty' }}>{mod.tagline}</p>
               <div style={{ display: 'flex', gap: 12, marginTop: 30, flexWrap: 'wrap' }}>
-                <Link to="/get-started" style={{ background: '#032F57', color: '#fff', fontSize: 15, fontWeight: 600, padding: '13px 24px', borderRadius: 12 }}>Book a Demo</Link>
+                <button onClick={openDemo} style={{ cursor: 'pointer', border: 'none', fontFamily: 'Inter, sans-serif', background: '#032F57', color: '#fff', fontSize: 15, fontWeight: 600, padding: '13px 24px', borderRadius: 12 }}>Book a Demo</button>
                 <a href="#capabilities" style={{ border: '1px solid rgba(3,47,87,.16)', color: '#032F57', fontSize: 15, fontWeight: 600, padding: '13px 22px', borderRadius: 12 }}>See capabilities</a>
               </div>
             </div>
@@ -142,7 +144,7 @@ export default function Feature() {
           <div style={{ position: 'absolute', right: -50, top: -50, width: 220, height: 220, borderRadius: '50%', border: '1px solid rgba(114,244,232,.15)' }} />
           <h2 style={{ fontSize: 32, lineHeight: 1.14, letterSpacing: '-0.02em', fontWeight: 800, color: '#fff', margin: 0, position: 'relative' }}>See {mod.name} in your workflow</h2>
           <p style={{ fontSize: 16, lineHeight: 1.6, color: 'rgba(255,255,255,.72)', margin: '14px auto 0', maxWidth: 520, position: 'relative' }}>Book a 30-minute demo and we'll show you how {mod.name} fits into how your organization actually operates.</p>
-          <div style={{ marginTop: 28, position: 'relative' }}><Link to="/get-started" style={{ display: 'inline-block', background: '#72F4E8', color: '#032F57', fontSize: 15, fontWeight: 700, padding: '14px 30px', borderRadius: 12 }}>Book a Demo</Link></div>
+          <div style={{ marginTop: 28, position: 'relative' }}><button onClick={openDemo} style={{ cursor: 'pointer', border: 'none', fontFamily: 'Inter, sans-serif', display: 'inline-block', background: '#72F4E8', color: '#032F57', fontSize: 15, fontWeight: 700, padding: '14px 30px', borderRadius: 12 }}>Book a Demo</button></div>
         </div>
       </section>
     </>

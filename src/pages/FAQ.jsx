@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useDemo } from '../components/DemoModal.jsx';
 
 const DATA = [
   { id: 'platform', name: 'Platform & Product', items: [
@@ -30,6 +31,7 @@ const DATA = [
 ];
 
 export default function FAQ() {
+  const openDemo = useDemo();
   const [open, setOpen] = useState({});
   const toggle = (key) => setOpen((o) => ({ ...o, [key]: !o[key] }));
 
@@ -82,7 +84,7 @@ export default function FAQ() {
           <div style={{ position: 'absolute', right: -50, top: -50, width: 200, height: 200, borderRadius: '50%', border: '1px solid rgba(114,244,232,.15)' }} />
           <h2 style={{ fontSize: 28, lineHeight: 1.16, letterSpacing: '-0.02em', fontWeight: 800, color: '#fff', margin: 0, position: 'relative' }}>Still have questions?</h2>
           <p style={{ fontSize: 15.5, lineHeight: 1.6, color: 'rgba(255,255,255,.72)', margin: '12px auto 0', maxWidth: 480, position: 'relative' }}>Our implementation team is happy to walk through how Migranium fits your organization.</p>
-          <div style={{ marginTop: 24, position: 'relative' }}><Link to="/get-started" style={{ display: 'inline-block', background: '#72F4E8', color: '#032F57', fontSize: 15, fontWeight: 700, padding: '14px 28px', borderRadius: 12 }}>Book a Demo</Link></div>
+          <div style={{ marginTop: 24, position: 'relative' }}><button onClick={openDemo} style={{ cursor: 'pointer', border: 'none', fontFamily: 'Inter, sans-serif', display: 'inline-block', background: '#72F4E8', color: '#032F57', fontSize: 15, fontWeight: 700, padding: '14px 28px', borderRadius: 12 }}>Book a Demo</button></div>
         </div>
       </section>
     </>

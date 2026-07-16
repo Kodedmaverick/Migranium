@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useDemo } from '../components/DemoModal.jsx';
 
 const CHALLENGES = ['Long patient wait times', 'Inefficient scheduling', 'Manual appointment booking', 'Referral bottlenecks', 'Fax overload', 'Paper-based intake forms', 'Poor patient communication', 'Missed appointments', 'High no-show rates', 'Duplicate data entry', 'Multiple disconnected systems', 'Poor reporting and analytics', 'Lack of workflow automation', 'Provider workload imbalance', 'Capacity planning difficulties', 'Manual task management', 'Poor queue visibility', 'Limited patient self-service', 'Slow patient check-in', 'Consent form management', 'Difficult document management', 'Limited operational visibility', 'Multi-location coordination', 'Staff communication challenges', 'Poor patient engagement', 'Limited AI capabilities', 'Limited system integrations', 'Difficult provider scheduling', 'Compliance and audit concerns', 'Other'];
 
@@ -18,6 +19,7 @@ const labelText = { fontSize: 12.5, fontWeight: 600, color: '#0B1B2B' };
 
 export default function GetStarted() {
   const navigate = useNavigate();
+  const openDemo = useDemo();
   const [step, setStep] = useState(0);
   const [dir, setDir] = useState('fwd');
   const [submitted, setSubmitted] = useState(false);
@@ -41,7 +43,7 @@ export default function GetStarted() {
     try { const leads = JSON.parse(localStorage.getItem('mig_leads') || '[]'); leads.push({ ts: new Date().toISOString(), ...f }); localStorage.setItem('mig_leads', JSON.stringify(leads)); } catch {}
     setSubmitted(true); window.scrollTo({ top: 0, behavior: 'smooth' });
   };
-  const jumpDemo = (e) => { if (e) e.preventDefault(); navigate('/#quote'); };
+  const jumpDemo = (e) => { if (e) e.preventDefault(); openDemo(); };
 
   const pill = (val, cur) => ({ cursor: 'pointer', fontFamily: 'Inter, sans-serif', fontSize: 13, fontWeight: val === cur ? 700 : 500, padding: '9px 16px', borderRadius: 999, border: `1px solid ${val === cur ? '#01B18B' : 'rgba(3,47,87,.16)'}`, background: val === cur ? 'rgba(1,177,139,.08)' : '#fff', color: val === cur ? '#01745F' : '#48586A', transition: 'all .16s' });
 

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { MODULES } from '../data/nav.js';
+import { useDemo } from '../components/DemoModal.jsx';
 
 const A = '/assets/';
 const kicker = { fontSize: 12.5, fontWeight: 700, letterSpacing: '.06em', textTransform: 'uppercase', color: '#01B18B', fontFamily: "'Shantell Sans', cursive" };
@@ -67,10 +68,7 @@ const INT_FLOWS = [];
 export default function Home() {
   const [kemiIdx, setKemiIdx] = useState(0);
   const [hoveredInt, setHoveredInt] = useState(null);
-  const [demoOpen, setDemoOpen] = useState(false);
-  const [demoSent, setDemoSent] = useState(false);
-
-  const openDemo = () => { setDemoSent(false); setDemoOpen(true); };
+  const openDemo = useDemo();
 
   return (
     <>
@@ -280,36 +278,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* DEMO MODAL */}
-      {demoOpen && (
-        <div onClick={() => setDemoOpen(false)} style={{ position: 'fixed', inset: 0, zIndex: 200, background: 'rgba(2,30,56,.55)', backdropFilter: 'blur(4px)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 24, animation: 'fadeIn .2s ease both' }}>
-          <div onClick={(e) => e.stopPropagation()} style={{ background: '#fff', borderRadius: 22, padding: 40, width: 440, maxWidth: '100%', boxShadow: '0 40px 100px rgba(2,30,56,.4)', animation: 'menuIn .28s cubic-bezier(.22,1,.36,1) both' }}>
-            {demoSent ? (
-              <div style={{ textAlign: 'center', padding: '20px 0' }}>
-                <div style={{ width: 56, height: 56, borderRadius: '50%', background: 'rgba(1,177,139,.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto', color: '#01B18B', fontSize: 24, fontWeight: 700 }}>✓</div>
-                <div style={{ fontSize: 20, fontWeight: 700, color: '#032F57', marginTop: 18 }}>Request received</div>
-                <p style={{ fontSize: 14, lineHeight: 1.6, color: '#5A6B7B', margin: '10px 0 0' }}>Our team will reach out shortly to schedule your personalized demo.</p>
-                <button onClick={() => setDemoOpen(false)} style={{ marginTop: 22, border: 'none', cursor: 'pointer', background: '#032F57', color: '#fff', fontFamily: 'Inter, sans-serif', fontSize: 14, fontWeight: 600, padding: '12px 24px', borderRadius: 10 }}>Done</button>
-              </div>
-            ) : (
-              <>
-                <div style={{ fontSize: 22, fontWeight: 800, letterSpacing: '-0.02em', color: '#032F57' }}>Book a demo</div>
-                <p style={{ fontSize: 14, lineHeight: 1.6, color: '#5A6B7B', margin: '8px 0 0' }}>See how Migranium fits your organization. 30 minutes, no obligation.</p>
-                <form onSubmit={(e) => { e.preventDefault(); setDemoSent(true); }} style={{ display: 'flex', flexDirection: 'column', gap: 12, marginTop: 22 }}>
-                  <input name="name" required placeholder="Full name" style={demoInput} />
-                  <input name="email" type="email" required placeholder="Work email" style={demoInput} />
-                  <input name="org" required placeholder="Organization" style={demoInput} />
-                  <select name="size" style={{ ...demoInput, color: '#0B1B2B', background: '#fff' }}><option>1 location</option><option>2–5 locations</option><option>6–20 locations</option><option>20+ locations</option></select>
-                  <button type="submit" style={{ border: 'none', cursor: 'pointer', background: '#032F57', color: '#fff', fontFamily: 'Inter, sans-serif', fontSize: 15, fontWeight: 600, padding: 13, borderRadius: 10, marginTop: 6 }}>Request demo</button>
-                </form>
-              </>
-            )}
-          </div>
-        </div>
-      )}
     </>
   );
 }
 
-const demoInput = { fontFamily: 'Inter, sans-serif', fontSize: 14, padding: '12px 14px', border: '1px solid rgba(3,47,87,.16)', borderRadius: 10 };

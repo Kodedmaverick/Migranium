@@ -109,7 +109,7 @@ export default function Navbar() {
               </div>
 
               <div style={{ width: 1, height: 20, background: 'rgba(3,47,87,.12)', margin: '0 6px' }} />
-              <a href="#" style={{ padding: '8px 14px', borderRadius: 999, fontSize: 13.5, fontWeight: 500, color: '#032F57' }}>Login</a>
+              <Link to="/login" style={{ padding: '8px 14px', borderRadius: 999, fontSize: 13.5, fontWeight: 500, color: '#032F57' }}>Login</Link>
               <Link to="/get-started" style={{ background: '#032F57', color: '#fff', fontSize: 13.5, fontWeight: 600, padding: '10px 18px', borderRadius: 999 }}>Get Started</Link>
             </div>
 
@@ -149,7 +149,7 @@ export default function Navbar() {
               {resources.map((it) => <Link key={it.name} to={it.to} onClick={closeMobile} style={mobileSub}>{it.name}</Link>)}
             </MobileGroup>
             <div style={{ height: 1, background: 'rgba(3,47,87,.08)', margin: '14px 0' }} />
-            <a href="#" onClick={closeMobile} style={{ fontSize: 17, fontWeight: 600, color: '#032F57', padding: '12px 0' }}>Login</a>
+            <Link to="/login" onClick={closeMobile} style={{ fontSize: 17, fontWeight: 600, color: '#032F57', padding: '12px 0' }}>Login</Link>
             <Link to="/get-started" onClick={closeMobile} style={{ textAlign: 'center', background: '#032F57', color: '#fff', fontSize: 16, fontWeight: 700, padding: '15px', borderRadius: 12, marginTop: 8 }}>Get Started</Link>
           </nav>
         </div>

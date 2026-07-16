@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useDemo } from '../components/DemoModal.jsx';
 
 const REVIEWS = [
   { title: 'Reliable, Scalable, and Adaptable', body: "I confidently recommend Migranium to any organization seeking a reliable, scalable, and adaptable solution. Its robust design, ease of use, and excellent support have been critical in enhancing our service delivery.", name: 'Tiffany Budhoo', role: 'System Planner', initials: 'TB', avatarBg: '#CFC4F6' },
@@ -9,6 +10,7 @@ const REVIEWS = [
 ];
 
 export default function Testimonials() {
+  const openDemo = useDemo();
   const [limit, setLimit] = useState(3);
   const visible = REVIEWS.slice(0, limit);
   const remaining = REVIEWS.length - limit;
@@ -77,7 +79,7 @@ export default function Testimonials() {
         <div style={{ maxWidth: 1120, margin: '0 auto', background: '#F7FAFA', border: '1px solid rgba(3,47,87,.08)', borderRadius: 24, padding: '52px 48px', textAlign: 'center' }}>
           <h2 style={{ fontSize: 30, lineHeight: 1.14, letterSpacing: '-0.02em', fontWeight: 800, color: '#032F57', margin: 0, textWrap: 'balance' }}>See what Migranium can do for your organization</h2>
           <div style={{ display: 'flex', gap: 12, justifyContent: 'center', marginTop: 26, flexWrap: 'wrap' }}>
-            <Link to="/get-started" style={{ background: '#032F57', color: '#fff', fontSize: 15, fontWeight: 600, padding: '14px 26px', borderRadius: 12 }}>Book a Demo</Link>
+            <button onClick={openDemo} style={{ cursor: 'pointer', border: 'none', fontFamily: 'Inter, sans-serif', background: '#032F57', color: '#fff', fontSize: 15, fontWeight: 600, padding: '14px 26px', borderRadius: 12 }}>Book a Demo</button>
             <Link to="/case-studies" style={{ border: '1px solid rgba(3,47,87,.16)', color: '#032F57', fontSize: 15, fontWeight: 600, padding: '14px 24px', borderRadius: 12 }}>Read case studies</Link>
           </div>
         </div>

@@ -10,7 +10,9 @@ import FAQ from './pages/FAQ.jsx';
 import Security from './pages/Security.jsx';
 import Compliance from './pages/Compliance.jsx';
 import GetStarted from './pages/GetStarted.jsx';
+import Login from './pages/Login.jsx';
 import Legal from './pages/Legal.jsx';
+import { DemoProvider } from './components/DemoModal.jsx';
 import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 
@@ -28,7 +30,7 @@ function ScrollManager() {
 
 export default function App() {
   return (
-    <>
+    <DemoProvider>
       <ScrollManager />
       <Navbar />
       <Routes>
@@ -43,12 +45,13 @@ export default function App() {
         <Route path="/security" element={<Security />} />
         <Route path="/compliance" element={<Compliance />} />
         <Route path="/get-started" element={<GetStarted />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/terms" element={<Legal doc="terms" />} />
         <Route path="/privacy" element={<Legal doc="privacy" />} />
         <Route path="/payment-terms" element={<Legal doc="payment" />} />
         <Route path="*" element={<Home />} />
       </Routes>
       <Footer />
-    </>
+    </DemoProvider>
   );
 }
